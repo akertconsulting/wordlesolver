@@ -62,4 +62,4 @@ def wordle_solver(discovered_letter_order=[],
         unique_letters = len(set(word)) == len(word)
         enriched_words.append({'word': word, 'unique_letters': unique_letters})
     enriched_words = sorted(enriched_words, key=lambda d: d['unique_letters'], reverse=True)
-    return [x.get('word') for x in enriched_words]
+    return list(set([x.get('word') for x in enriched_words]))
