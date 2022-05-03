@@ -18,40 +18,32 @@ def wordle_solver(discovered_letter_order=[],
     for possible_word in five_letter_words:
         bad_word = False
         # Remove words that have bad letters
-        if bad_letters:
-            for letter in possible_word:
-                if letter in bad_letters:
-                    bad_word = True
+        for letter in possible_word:
+            if letter in bad_letters:
+                bad_word = True
         # If word passed bad letters, remove words that have no discovered letters
         if not bad_word:
-            if len(discovered_letters) > 0:
-                for good_letter in discovered_letters:
-                    if good_letter not in possible_word:
-                        bad_word = True
+            for good_letter in discovered_letters:
+                if good_letter not in possible_word:
+                    bad_word = True
         # If word still passing, remove words that don't have discovered letter order
         if not bad_word:
-            if discovered_letter_order:
-                for i, letter in enumerate(possible_word):
-                    if discovered_letter_order[i]:
-                        if letter != discovered_letter_order[i]:
-                            bad_word = True
+            for i, letter in enumerate(possible_word):
+                if discovered_letter_order[i]:
+                    if letter != discovered_letter_order[i]:
+                        bad_word = True
         # If word still passing, remove words that have letters in the wrong place
         if not bad_word:
-            if bad_letter_order_one:
-                if possible_word[0] in bad_letter_order_one:
-                    bad_word = True
-            if bad_letter_order_two:
-                if possible_word[1] in bad_letter_order_two:
-                    bad_word = True
-            if bad_letter_order_three:
-                if possible_word[2] in bad_letter_order_three:
-                    bad_word = True
-            if bad_letter_order_four:
-                if possible_word[3] in bad_letter_order_four:
-                    bad_word = True
-            if bad_letter_order_five:
-                if possible_word[4] in bad_letter_order_five:
-                    bad_word = True
+            if possible_word[0] in bad_letter_order_one:
+                bad_word = True
+            if possible_word[1] in bad_letter_order_two:
+                bad_word = True
+            if possible_word[2] in bad_letter_order_three:
+                bad_word = True
+            if possible_word[3] in bad_letter_order_four:
+                bad_word = True
+            if possible_word[4] in bad_letter_order_five:
+                bad_word = True
                 
         # If word still passing, add to possible words
         if not bad_word:
